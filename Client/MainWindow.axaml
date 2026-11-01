@@ -4,12 +4,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         xmlns:vm = "using:Client.ViewModels"
+        xmlns:views="using:Client.Views"
         x:Class="Client.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="WestcoastEducation Admin">
-        <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="{Binding Greeting}" FontSize ="20" HorizontalAlignment="Center" />
-                <TextBlock Text="{Binding Subtitle}" FontSize ="20" HorizontalAlignment="Center" />
-                <Button Content="Klicka" Command="{Binding ChangeGreetingCommand}" HorizontalAlignment="Center" />
-        </StackPanel>
+        <Window.DataTemplates>
+                <DataTemplate DataType="vm:CoursesViewModel">
+                        <views:CoursesView/>
+                </DataTemplate>
+        </Window.DataTemplates>
+        <ContentControl Content="{Binding CurrentView}" Margin="20"/>
+
+
 </Window>
