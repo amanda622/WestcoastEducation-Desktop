@@ -10,5 +10,6 @@
         <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="{Binding Greeting}" FontSize ="20" HorizontalAlignment="Center" />
                 <TextBlock Text="{Binding Subtitle}" FontSize ="20" HorizontalAlignment="Center" />
+                <Button Content="Klicka" Command="{Binding ChangeGreetingCommand}" HorizontalAlignment="Center" />
         </StackPanel>
 </Window>

@@ -1,9 +1,19 @@
+using System;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 namespace Client.ViewModels;
 
-public class MainWindowViewModel
+public partial class MainWindowViewModel: ObservableObject
 {
-    public string Greeting {get; } = "Välkommen till WestcoastEducation";
+    [ObservableProperty]
+    public partial string Greeting {get; set;} = "Välkommen till WestcoastEducation";
     public string Subtitle {get; } = "Administrera kurser, studenter och lärare";
+    [RelayCommand]
+    private void ChangeGreeting()
+    {
+        Greeting = "Hej, Du klickade på knappen.";
+        Console.WriteLine($"Greeting is now: {Greeting}");
 
+    }
 
 }
