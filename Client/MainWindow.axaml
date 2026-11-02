@@ -12,8 +12,14 @@
                 <DataTemplate DataType="vm:CoursesViewModel">
                         <views:CoursesView/>
                 </DataTemplate>
+                <DataTemplate DataType="vm:StudentsViewModel">
+                        <views:StudentsView/>
+                </DataTemplate>
         </Window.DataTemplates>
-        <ContentControl Content="{Binding CurrentView}" Margin="20"/>
+        <StackPanel>
+                <ContentControl Content="{Binding CurrentView}" Margin="20"/>
+                <Button Content="Studenter" Command="{Binding GoToStudentsCommand}" />
+        </StackPanel>
 
 
 </Window>
