@@ -6,6 +6,9 @@
              x:Class="Client.Views.CoursesView"
              xmlns:vm="using:Client.ViewModels"
              x:DataType="vm:CoursesViewModel">
-             
-  <TextBlock Text="{Binding PageTitle}" FontSize="24" />
+  <StackPanel>
+      <TextBlock Text="{Binding PageTitle}" FontSize="24" />
+      <TextBlock Text="{Binding Courses.Count}"/>
+
+  </StackPanel>           
 </UserControl>
