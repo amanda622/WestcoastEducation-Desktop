@@ -4,6 +4,6 @@ namespace Client.ViewModels;
 
 public class StudentsViewModel:ObservableObject
 {
-    public string PageTitle {get;} = "Studenter";
+    public string PageTitle {get;} = "Students";
 
 }

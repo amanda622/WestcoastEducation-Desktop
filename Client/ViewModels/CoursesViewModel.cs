@@ -3,6 +3,6 @@ namespace Client.ViewModels;
 
 public partial class CoursesViewModel:ObservableObject
 {
-    public string PageTitle {get; } = "Kurser";
+    public string PageTitle {get; } = "Courses";
 
 }

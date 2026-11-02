@@ -14,6 +14,18 @@ public partial class MainWindowViewModel : ObservableObject
         CurrentView = new StudentsViewModel();
     }
 
+    [RelayCommand]
+    private void GoToTeachers()
+    {
+        CurrentView = new TeachersViewModel();
+    }
+
+    [RelayCommand]
+    private void GoToCourses()
+    {
+        CurrentView = new CoursesViewModel();
+    }
+
 }
 
 
