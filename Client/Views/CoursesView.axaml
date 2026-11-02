@@ -3,12 +3,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:models="using:WestcoastEducation.Models"
              x:Class="Client.Views.CoursesView"
              xmlns:vm="using:Client.ViewModels"
              x:DataType="vm:CoursesViewModel">
   <StackPanel>
-      <TextBlock Text="{Binding PageTitle}" FontSize="24" />
-      <TextBlock Text="{Binding Courses.Count}"/>
+    <TextBlock Text="{Binding PageTitle}" FontSize="24" />
+    <TextBlock Text="{Binding Courses.Count}"/>
+    <ItemsControl ItemsSource="{Binding Courses}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate x:DataType="models:Course">
+          <StackPanel Orientation="Horizontal" Spacing="20">
+            <TextBlock Text="{Binding CourseNumber}"/>
+            <TextBlock Text="{Binding Title}"/>
+            <TextBlock Text="{Binding CourseType}"/>
+          </StackPanel>
+        </DataTemplate>
 
-  </StackPanel>           
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+  </StackPanel>
 </UserControl>
