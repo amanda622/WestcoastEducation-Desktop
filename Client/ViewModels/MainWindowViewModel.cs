@@ -5,9 +5,14 @@ namespace Client.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {
+    private readonly ICourseService _courseService;
     [ObservableProperty]
-    public partial ObservableObject CurrentView { get; set; } = new CoursesViewModel(new InMemoryCourseService());
-    
+    public partial ObservableObject CurrentView { get; set; }
+    public MainWindowViewModel(ICourseService courseService)
+    {
+        _courseService = courseService;
+        CurrentView  = new CoursesViewModel(_courseService);
+    }
     [RelayCommand]
     private void GoToStudents()
     {
@@ -23,7 +28,7 @@ public partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     private void GoToCourses()
     {
-        CurrentView = new CoursesViewModel(new InMemoryCourseService());
+        CurrentView = new CoursesViewModel(_courseService);
     }
 
 }
