@@ -1,12 +1,12 @@
-using System;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Client.Services;
 namespace Client.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty]
-    public partial ObservableObject CurrentView { get; set; } = new CoursesViewModel();
+    public partial ObservableObject CurrentView { get; set; } = new CoursesViewModel(new InMemoryCourseService());
     
     [RelayCommand]
     private void GoToStudents()
@@ -23,7 +23,7 @@ public partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     private void GoToCourses()
     {
-        CurrentView = new CoursesViewModel();
+        CurrentView = new CoursesViewModel(new InMemoryCourseService());
     }
 
 }
