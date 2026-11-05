@@ -4,6 +4,9 @@ using Avalonia.Markup.Xaml;
 using Client.Services;
 using Client.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using Microsoft.Extensions.Configuration;
+
 
 namespace Client;
 
@@ -16,11 +19,18 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        var services = new ServiceCollection();
-        services.AddSingleton<ICourseService, InMemoryCourseService>();
-         services.AddSingleton<MainWindowViewModel>();
+        IConfiguration config = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", optional: false)
+            .Build();
+        //Console.WriteLine($"RestDb BaseUrl: {config["RestDb:BaseUrl"]}");
 
-         var provider = services.BuildServiceProvider();
+        var services = new ServiceCollection();
+        services.AddSingleton(config);
+
+        services.AddSingleton<ICourseService, InMemoryCourseService>();
+        services.AddSingleton<MainWindowViewModel>();
+
+        var provider = services.BuildServiceProvider();
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
