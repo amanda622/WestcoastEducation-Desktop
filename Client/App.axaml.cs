@@ -6,6 +6,7 @@ using Client.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Microsoft.Extensions.Configuration;
+using WestcoastEducation.Models;
 
 
 namespace Client;
@@ -27,7 +28,8 @@ public partial class App : Application
         var services = new ServiceCollection();
         services.AddSingleton(config);
 
-        services.AddSingleton<ICourseService, InMemoryCourseService>();
+        services.AddSingleton<IHttpService<Course>, HttpService<Course>>();
+        services.AddSingleton<ICourseService, RestDbCourseService>();
         services.AddSingleton<MainWindowViewModel>();
 
         var provider = services.BuildServiceProvider();
