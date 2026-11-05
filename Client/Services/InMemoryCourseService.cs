@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using Client.Services;
 using WestcoastEducation.Models;
 using WestcoastEducation.Enums;
+using System.Threading.Tasks;
 
 namespace Client.Services;
 
 public class InMemoryCourseService : ICourseService
 {
-    public List<Course> GetCourses()
+    public Task<List<Course>> GetCoursesAsync()
     {
-        return
+        List<Course> courses =
         [
         new Course
         {
@@ -29,5 +30,6 @@ public class InMemoryCourseService : ICourseService
             CourseType = CourseType.Distans
         }
         ];
+        return Task.FromResult(courses);
     }
 }

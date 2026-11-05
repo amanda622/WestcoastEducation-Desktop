@@ -1,10 +1,10 @@
-﻿using WestcoastEducation.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using WestcoastEducation.Models;
 
 namespace Client.Services;
 
 public interface ICourseService
 {
-    List<Course> GetCourses();
-
+    Task<List<Course>> GetCoursesAsync();
 }
