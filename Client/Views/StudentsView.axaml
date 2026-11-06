@@ -8,7 +8,7 @@
              xmlns:vm="using:Client.ViewModels"
              x:DataType="vm:StudentsViewModel">
   <StackPanel Spacing="10">
-    <TextBlock Text="{Binding PageTitle}" FontSize="24" />
+    <TextBlock Classes="pageTitle" Text="{Binding PageTitle}" />
 
     <!-- Form: add a new student -->
     <StackPanel Spacing="8" MaxWidth="400" HorizontalAlignment="Left">
@@ -19,11 +19,11 @@
       <TextBox PlaceholderText="Phone (optional)" Text="{Binding FormPhone}" />
 
       <StackPanel Orientation="Horizontal" Spacing="8">
-        <Button Content="Add" Command="{Binding AddStudentCommand}" />
+        <Button Classes="primary" Content="Add" Command="{Binding AddStudentCommand}" />
         <Button Content="Clear" Command="{Binding ClearFormCommand}" />
       </StackPanel>
 
-      <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" />
+      <TextBlock Classes="status" Text="{Binding StatusMessage}" TextWrapping="Wrap" />
     </StackPanel>
 
     <ListBox ItemsSource="{Binding Students}">

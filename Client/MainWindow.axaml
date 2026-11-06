@@ -2,11 +2,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="650"
         xmlns:vm = "using:Client.ViewModels"
         xmlns:views="using:Client.Views"
         x:Class="Client.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        Width="900" Height="700"
+        Background="{DynamicResource BackgroundBrush}"
         Title="WestcoastEducation Admin">
         <Window.DataTemplates>
                 <DataTemplate DataType="vm:CoursesViewModel">
@@ -19,12 +21,28 @@
                         <views:TeachersView/>
                 </DataTemplate>
         </Window.DataTemplates>
-        <StackPanel>
-                <Button Content="Courses" Command="{Binding GoToCoursesCommand}" />
-                <Button Content="Students" Command="{Binding GoToStudentsCommand}" />
-                <Button Content="Teachers" Command="{Binding GoToTeachersCommand}" />
-                <ContentControl Content="{Binding CurrentView}" Margin="20"/>
-        </StackPanel>
 
+        <DockPanel>
+                <!-- Top bar with app name and navigation -->
+                <Border DockPanel.Dock="Top" Background="{DynamicResource PrimaryBrush}" Padding="16 8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="WestcoastEducation"
+                                           Foreground="{DynamicResource OnPrimaryBrush}"
+                                           FontSize="18" FontWeight="Bold"
+                                           VerticalAlignment="Center" Margin="0 0 24 0" />
+                                <Button Classes="nav" Content="Courses" Command="{Binding GoToCoursesCommand}" />
+                                <Button Classes="nav" Content="Students" Command="{Binding GoToStudentsCommand}" />
+                                <Button Classes="nav" Content="Teachers" Command="{Binding GoToTeachersCommand}" />
+                        </StackPanel>
+                </Border>
 
+                <!-- The current page (courses, students or teachers) -->
+                <ScrollViewer>
+                        <Border Background="{DynamicResource SurfaceBrush}"
+                                CornerRadius="{DynamicResource CardCornerRadius}"
+                                Margin="20" Padding="20">
+                                <ContentControl Content="{Binding CurrentView}" />
+                        </Border>
+                </ScrollViewer>
+        </DockPanel>
 </Window>

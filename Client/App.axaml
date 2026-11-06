@@ -1,10 +1,71 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Client.App"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+             RequestedThemeVariant="Light">
+
+    <!-- All colors and sizes live here. Views use them with {DynamicResource Key},
+         so changing one value here changes the whole app. -->
+    <Application.Resources>
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#1F4E79" />
+        <SolidColorBrush x:Key="PrimaryHoverBrush" Color="#2E6DA4" />
+        <SolidColorBrush x:Key="OnPrimaryBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="BackgroundBrush" Color="#F4F6F8" />
+        <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="TextBrush" Color="#1B1B1B" />
+        <SolidColorBrush x:Key="MutedTextBrush" Color="#5F6B76" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#E07A1F" />
+        <SolidColorBrush x:Key="DangerBrush" Color="#C0392B" />
+
+        <x:Double x:Key="PageTitleFontSize">26</x:Double>
+        <CornerRadius x:Key="CardCornerRadius">8</CornerRadius>
+    </Application.Resources>
 
     <Application.Styles>
         <FluentTheme />
+
+        <!-- Page title, e.g. "Courses" -->
+        <Style Selector="TextBlock.pageTitle">
+            <Setter Property="FontSize" Value="{DynamicResource PageTitleFontSize}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
+        </Style>
+
+        <!-- Status text under the form -->
+        <Style Selector="TextBlock.status">
+            <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
+        </Style>
+
+        <!-- Navigation buttons in the top bar -->
+        <Style Selector="Button.nav">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource OnPrimaryBrush}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Padding" Value="16 8" />
+        </Style>
+        <Style Selector="Button.nav:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource PrimaryHoverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnPrimaryBrush}" />
+        </Style>
+
+        <!-- Main action button (Add / Save changes) -->
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnPrimaryBrush}" />
+        </Style>
+        <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource PrimaryHoverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnPrimaryBrush}" />
+        </Style>
+
+        <!-- Delete button -->
+        <Style Selector="Button.danger">
+            <Setter Property="Background" Value="{DynamicResource DangerBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnPrimaryBrush}" />
+        </Style>
+        <Style Selector="Button.danger:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource DangerBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource OnPrimaryBrush}" />
+            <Setter Property="Opacity" Value="0.85" />
+        </Style>
     </Application.Styles>
 </Application>

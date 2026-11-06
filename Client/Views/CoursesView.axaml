@@ -8,7 +8,7 @@
              xmlns:vm="using:Client.ViewModels"
              x:DataType="vm:CoursesViewModel">
   <StackPanel Spacing="10">
-    <TextBlock Text="{Binding PageTitle}" FontSize="24" />
+    <TextBlock Classes="pageTitle" Text="{Binding PageTitle}" />
 
     <!-- Form: add a new course, or edit the one selected in the list -->
     <StackPanel Spacing="8" MaxWidth="400" HorizontalAlignment="Left">
@@ -16,28 +16,28 @@
       <TextBox PlaceholderText="Title" Text="{Binding FormTitle}" />
 
       <StackPanel Orientation="Horizontal" Spacing="8">
-        <TextBlock Text="Weeks" VerticalAlignment="Center" Width="80" />
+        <TextBlock Text="Weeks" VerticalAlignment="Center" Width="80" Foreground="{DynamicResource MutedTextBrush}" />
         <NumericUpDown Value="{Binding FormLengthInWeeks}" Minimum="1" Increment="1" FormatString="0" Width="150" />
       </StackPanel>
 
       <StackPanel Orientation="Horizontal" Spacing="8">
-        <TextBlock Text="Start date" VerticalAlignment="Center" Width="80" />
+        <TextBlock Text="Start date" VerticalAlignment="Center" Width="80" Foreground="{DynamicResource MutedTextBrush}" />
         <CalendarDatePicker SelectedDate="{Binding FormStartDate}" Width="150" />
       </StackPanel>
 
       <StackPanel Orientation="Horizontal" Spacing="8">
-        <TextBlock Text="Type" VerticalAlignment="Center" Width="80" />
+        <TextBlock Text="Type" VerticalAlignment="Center" Width="80" Foreground="{DynamicResource MutedTextBrush}" />
         <ComboBox ItemsSource="{Binding CourseTypes}" SelectedItem="{Binding FormCourseType}" Width="150" />
       </StackPanel>
 
       <StackPanel Orientation="Horizontal" Spacing="8">
-        <Button Content="Add" Command="{Binding AddCourseCommand}" />
-        <Button Content="Save changes" Command="{Binding UpdateCourseCommand}" />
-        <Button Content="Delete" Command="{Binding DeleteCourseCommand}" />
+        <Button Classes="primary" Content="Add" Command="{Binding AddCourseCommand}" />
+        <Button Classes="primary" Content="Save changes" Command="{Binding UpdateCourseCommand}" />
+        <Button Classes="danger" Content="Delete" Command="{Binding DeleteCourseCommand}" />
         <Button Content="Clear" Command="{Binding ClearFormCommand}" />
       </StackPanel>
 
-      <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" />
+      <TextBlock Classes="status" Text="{Binding StatusMessage}" TextWrapping="Wrap" />
     </StackPanel>
 
     <!-- List: click a course to load it into the form -->
