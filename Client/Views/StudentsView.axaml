@@ -3,9 +3,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:models="using:WestcoastEducation.Models"
              x:Class="Client.Views.StudentsView"
              xmlns:vm="using:Client.ViewModels"
              x:DataType="vm:StudentsViewModel">
+  <StackPanel Spacing="10">
+    <TextBlock Text="{Binding PageTitle}" FontSize="24" />
 
-  <TextBlock Text="{Binding PageTitle}" FontSize="24" />
+    <!-- Form: add a new student -->
+    <StackPanel Spacing="8" MaxWidth="400" HorizontalAlignment="Left">
+      <TextBox PlaceholderText="Person number" Text="{Binding FormPersonNumber}" />
+      <TextBox PlaceholderText="First name" Text="{Binding FormFirstName}" />
+      <TextBox PlaceholderText="Last name" Text="{Binding FormLastName}" />
+      <TextBox PlaceholderText="Email" Text="{Binding FormEmail}" />
+      <TextBox PlaceholderText="Phone (optional)" Text="{Binding FormPhone}" />
+
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <Button Content="Add" Command="{Binding AddStudentCommand}" />
+        <Button Content="Clear" Command="{Binding ClearFormCommand}" />
+      </StackPanel>
+
+      <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" />
+    </StackPanel>
+
+    <ListBox ItemsSource="{Binding Students}">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="models:Student">
+          <StackPanel Orientation="Horizontal" Spacing="20">
+            <TextBlock Text="{Binding PersonNumber}" Width="120" />
+            <TextBlock Text="{Binding FirstName}" Width="100" />
+            <TextBlock Text="{Binding LastName}" Width="120" />
+            <TextBlock Text="{Binding Email}" Width="200" />
+            <TextBlock Text="{Binding Phone}" />
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </StackPanel>
 </UserControl>
