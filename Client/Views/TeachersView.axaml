@@ -3,8 +3,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:models="using:WestcoastEducation.Models"
              x:Class="Client.Views.TeachersView"
              xmlns:vm="using:Client.ViewModels"
              x:DataType="vm:TeachersViewModel">
-  <TextBlock Text="{Binding PageTitle}" FontSize="24"/>
+  <StackPanel Spacing="10">
+    <TextBlock Text="{Binding PageTitle}" FontSize="24" />
+
+    <!-- Form: add a new teacher, or edit the one selected in the list -->
+    <StackPanel Spacing="8" MaxWidth="400" HorizontalAlignment="Left">
+      <TextBox PlaceholderText="Person number" Text="{Binding FormPersonNumber}" />
+      <TextBox PlaceholderText="First name" Text="{Binding FormFirstName}" />
+      <TextBox PlaceholderText="Last name" Text="{Binding FormLastName}" />
+      <TextBox PlaceholderText="Email" Text="{Binding FormEmail}" />
+      <TextBox PlaceholderText="Phone (optional)" Text="{Binding FormPhone}" />
+      <TextBox PlaceholderText="Knowledge area, e.g. C#, Databases" Text="{Binding FormKnowledgeArea}" />
+
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <Button Content="Add" Command="{Binding AddTeacherCommand}" />
+        <Button Content="Save changes" Command="{Binding UpdateTeacherCommand}" />
+        <Button Content="Clear" Command="{Binding ClearFormCommand}" />
+      </StackPanel>
+
+      <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" />
+    </StackPanel>
+
+    <!-- List: click a teacher to load it into the form -->
+    <ListBox ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="models:Teacher">
+          <StackPanel Orientation="Horizontal" Spacing="20">
+            <TextBlock Text="{Binding PersonNumber}" Width="120" />
+            <TextBlock Text="{Binding FirstName}" Width="100" />
+            <TextBlock Text="{Binding LastName}" Width="120" />
+            <TextBlock Text="{Binding Email}" Width="200" />
+            <TextBlock Text="{Binding KnowledgeArea}" />
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </StackPanel>
 </UserControl>

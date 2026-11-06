@@ -30,6 +30,13 @@ public partial class App : Application
 
         services.AddSingleton<IHttpService<Course>, HttpService<Course>>();
         services.AddSingleton<ICourseService, RestDbCourseService>();
+
+        services.AddSingleton<IHttpService<Student>, HttpService<Student>>();
+        services.AddSingleton<IStudentService, RestDbStudentService>();
+
+        services.AddSingleton<IHttpService<Teacher>, HttpService<Teacher>>();
+        services.AddSingleton<ITeacherService, RestDbTeacherService>();
+
         services.AddSingleton<MainWindowViewModel>();
 
         var provider = services.BuildServiceProvider();
