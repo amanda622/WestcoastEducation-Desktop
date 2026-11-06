@@ -1,9 +1,12 @@
-﻿namespace WestcoastEducation.Models;
+using System.Text.Json.Serialization;
+
+namespace WestcoastEducation.Models;
 
 public class Teacher:Person
 {
     public string KnowledgeArea {get; set;} = "";
     // Aggregation
+    [JsonIgnore]
     public List<Course> Courses { get; set; } = [];
     public override string ToString()
     {
